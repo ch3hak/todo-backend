@@ -13,25 +13,3 @@ mongoose.connect('mongodb://127.0.0.1:27017/todos')
 app.listen(3000, () => {
     console.log('Server is running on port 3000...');
 });
-
-// async function createTodo(){
-//     const todo = new Todo({
-//         title: 'do leetcode'
-//     });
-    
-//     const result = await todo.save();
-//     console.log(result);
-// }
-
-// createTodo();
-
-// async function updateTodo(id){
-//     const result = await Todo.findByIdAndUpdate({_id: id}, {
-//         $set: {
-//             completed: true
-//         }
-//     });
-//     console.log(result);
-// }
-
-// updateTodo('68530ed67d71fff36d762794');

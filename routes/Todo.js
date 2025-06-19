@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
 
+router.get('/getAll', async (req, res) => {
+    try{
+        const todos = await Todo.find();
+        res.json(todos);
+    }
+    catch (err) {
+        console.error('Error fetching todos:', err);
+        res.status(500).json({error: err.message});
+    }
+})
+
 router.put('/:id/toggle', async (req, res) => {
     try{ 
         const todo = await Todo.findById(req.params.id);
@@ -16,7 +27,7 @@ router.put('/:id/toggle', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
     try{
         const newTodo = new Todo({
             title: req.body.title
