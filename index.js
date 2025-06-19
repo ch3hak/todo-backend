@@ -3,10 +3,12 @@ const todos = require('./routes/Todo');
 const users = require('./routes/Users');
 const express = require('express');
 const app = express();
+const auth = require('./routes/Auth');
 
 app.use(express.json());
 app.use('/api/todos', todos);
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 mongoose.connect('mongodb://127.0.0.1:27017/todos')
     .then(() => console.log('connected to mongodb...'))
