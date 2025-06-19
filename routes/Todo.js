@@ -16,6 +16,19 @@ router.put('/:id/toggle', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try{
+        const newTodo = new Todo({
+            title: req.body.title
+        });
+        const savedTodo = await newTodo.save();
+        res.status(201).json(savedTodo);
+    }
+    catch (err) { 
+        res.json({error: err.message});
+    }
+});
+
 router.delete('/:id', async (req, res) => {
     try {
         const todo = await Todo.findById(req.params.id);
