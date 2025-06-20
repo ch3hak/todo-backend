@@ -1,9 +1,15 @@
+const config = require('config');
 const mongoose = require('mongoose');
 const todos = require('./routes/Todo');
 const users = require('./routes/Users');
 const express = require('express');
 const app = express();
 const auth = require('./routes/Auth');
+
+if (!config.get('jwtPrivateKey')) {
+    console.error('FATAL ERROR: jwtPrivateKey is not defined');
+    process.exit(1);
+}
 
 app.use(express.json());
 app.use('/api/todos', todos);
